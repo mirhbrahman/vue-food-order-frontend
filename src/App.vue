@@ -1,31 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <page-navbar></page-navbar>
     <router-view/>
   </div>
 </template>
 
+<script>
+import PageNavbar from '@/components/layouts/partials/PageNavbar.vue'
+export default {
+  components: {
+    PageNavbar
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+.navbar-item.is-mega {
+  position: static;
+
+  .is-mega-menu-title {
+    margin-bottom: 0;
+    padding: .375rem 1rem;
+  }
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.navbar-link:not(.is-arrowless)::after {
+    border-color: hsl(171, 100%, 41%);
+    margin-top: -0.375em;
+    right: 1.125em;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
