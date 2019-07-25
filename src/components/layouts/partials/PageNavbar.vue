@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar ">
+  <nav class="navbar is-fixed-top">
+    <div class="container is-fluid">
     <div class="navbar-brand">
       <a
         class="navbar-item"
@@ -7,7 +8,7 @@
       >
         <img
           src="http://bulma.io/images/bulma-logo.png"
-          alt="Bulma: a modern CSS framework based on Flexbox"
+          alt=""
           width="112"
           height="28"
         >
@@ -371,6 +372,7 @@
 
       </div>
     </div>
+  </div>
   </nav>
 
 </template>

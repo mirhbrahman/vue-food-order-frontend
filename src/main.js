@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 import 'bulma/css/bulma.css'
+import './assets/css/style.css'
 
 import App from './App.vue'
 import router from './router'

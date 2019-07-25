@@ -1,0 +1,83 @@
+body{
+	background: #F3F7F8;
+	font-family: 'Muli', sans-serif;
+}
+.bg-white{
+	background: white;
+}
+.pl-0{
+	padding-left: 0px;
+}
+.title.is-6 {
+	font-size: 1rem;
+	margin-bottom: 3px;
+}
+.mb-0{
+	margin-bottom: 0px!important;
+}
+/* NAVBAR */
+.navbar{
+	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+/* SECONDARY NAVBAR */
+.sub-nav{
+	margin-bottom: 20px;
+}
+
+/* HERO */	
+.hero{
+	background-image: url("../images/hero.jpg");
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover; /* Resize the background image to cover the entire container */
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+/* SEARCH */
+
+.search {
+	width: 100%;
+	position: relative;
+	display: flex;
+}
+
+.searchTerm {
+	width: 100%;
+	border: 3px solid #00D1B2;
+	border-right: none;
+	padding: 5px;
+	height: 40px;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+	color: #9DBFAF;
+}
+
+.searchTerm:focus{
+	color: #00D1B2;
+}
+
+.searchButton {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #00D1B2;
+	background: #00D1B2;
+	text-align: center;
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+	width: 40%;
+	margin: 0 auto;
+}
+
+/* BOX */
+.box{
+	box-shadow: 0 2px 3px rgba(10, 10, 10, 0.09), 0 0 0 1px rgba(10, 10, 10, 0.05);
+	border-radius: 0px;
+}
