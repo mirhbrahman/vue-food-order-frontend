@@ -15,6 +15,9 @@ body{
 .mb-0{
 	margin-bottom: 0px!important;
 }
+.mt-30{
+	margin-top: 30px;
+}
 /* NAVBAR */
 .navbar{
 	box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
@@ -26,7 +29,7 @@ body{
 }
 
 /* HERO */	
-.hero{
+.main-hero{
 	background-image: url("../images/hero.jpg");
 	background-position: center; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -48,6 +51,7 @@ body{
 	border: 3px solid #00D1B2;
 	border-right: none;
 	padding: 5px;
+	padding-left: 10px;
 	height: 40px;
 	border-radius: 5px 0 0 5px;
 	outline: none;
@@ -80,4 +84,30 @@ body{
 .box{
 	box-shadow: 0 2px 3px rgba(10, 10, 10, 0.09), 0 0 0 1px rgba(10, 10, 10, 0.05);
 	border-radius: 0px;
+}
+
+/* NEWS LETTER */
+.news-container{
+	text-align: center;
+}
+.news-wrap{
+	width: 60%;
+	margin: 0 auto;
+}
+.news-serch-input{
+	width: 100%;
+}
+
+/* OFFER */
+.offer-image{
+	width: 70px;
+	margin-top: 10px;
+}
+
+/* SIDE MENU */
+.news-wrap{
+	width: 100%;
+}
+.side-serch-input{
+	width: 100%;
 }

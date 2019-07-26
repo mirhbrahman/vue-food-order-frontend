@@ -2,14 +2,18 @@
   <div id="app" class="">
     <page-navbar></page-navbar>
     <router-view/>
+    <page-footer></page-footer>
   </div>
 </template>
 
 <script>
 import PageNavbar from '@/components/layouts/partials/PageNavbar.vue'
+import PageFooter from '@/components/layouts/partials/PageFooter.vue'
+
 export default {
   components: {
-    PageNavbar
+    PageNavbar,
+    PageFooter
   }
 }
 </script>
