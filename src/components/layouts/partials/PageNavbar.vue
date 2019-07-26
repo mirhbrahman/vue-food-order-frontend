@@ -55,218 +55,30 @@
       class="navbar-menu"
     >
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a
-            class="navbar-link  is-active is-primary"
-            href="/documentation/overview/start/"
-          >
-            Docs
-          </a>
-          <div class="navbar-dropdown ">
-            <a
-              class="navbar-item "
-              href="/documentation/overview/start/"
-            >
-              Overview
-            </a>
-            <a
-              class="navbar-item "
-              href="http://bulma.io/documentation/modifiers/syntax/"
-            >
-              Modifiers
-            </a>
-            <a
-              class="navbar-item "
-              href="http://bulma.io/documentation/columns/basics/"
-            >
-              Columns
-            </a>
-            <a
-              class="navbar-item "
-              href="http://bulma.io/documentation/layout/container/"
-            >
-              Layout
-            </a>
-            <a
-              class="navbar-item "
-              href="http://bulma.io/documentation/form/general/"
-            >
-              Form
-            </a>
-            <a
-              class="navbar-item "
-              href="http://bulma.io/documentation/elements/box/"
-            >
-              Elements
-            </a>
-
-            <a
-              class="navbar-item is-active"
-              href="http://bulma.io/documentation/components/breadcrumb/"
-            >
-              Components
-            </a>
-
-            <hr class="navbar-divider">
-            <div class="navbar-item">
-              <div>
-                <p class="is-size-6-desktop">
-                  <strong class="has-text-info">0.5.1</strong>
-                </p>
-
-                <small>
-                  <a
-                    class="bd-view-all-versions"
-                    href="/versions"
-                  >View all versions</a>
-                </small>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable is-mega">
+        <div v-for="(category, index) in categories" :key="index" class="navbar-item has-dropdown is-hoverable is-mega">
           <div class="navbar-link">
-            Blog
+            {{category.name}}
           </div>
           <div
-            id="blogDropdown"
+            :id="category.id"
             class="navbar-dropdown "
             data-style="width: 18rem;"
           >
             <div class="container is-fluid">
               <div class="columns">
-                <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title has-text-primary">Sub Menu Title</h1>
+                <div v-for="(subCat, index) in category.sub_categories" :key="index" class="column">
+                  <a href="">
+                    <h1 class="title is-6 is-mega-menu-title has-text-primary">{{subCat.name}}</h1>
+                  </a>
                   <a
+                    v-for="(childCat, index) in subCat.child_categories" :key="index"
                     class="navbar-item"
                     href="/2017/08/03/list-of-tags/"
                   >
                     <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
+                      
+                      <p>{{childCat.name}}</p>
                     </div>
-                  </a>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                </div>
-                <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="/documentation/overview/start/"
-                  >
-                    Overview
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="http://bulma.io/documentation/modifiers/syntax/"
-                  >
-                    Modifiers
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="http://bulma.io/documentation/columns/basics/"
-                  >
-                    Columns
-                  </a>
-                </div>
-                <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a
-                    class="navbar-item"
-                    href="/2017/08/03/list-of-tags/"
-                  >
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-
-                </div>
-                <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a
-                    class="navbar-item "
-                    href="/documentation/overview/start/"
-                  >
-                    Overview
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="http://bulma.io/documentation/modifiers/syntax/"
-                  >
-                    Modifiers
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="http://bulma.io/documentation/columns/basics/"
-                  >
-                    Columns
-                  </a>
-                  <a
-                    class="navbar-item "
-                    href="http://bulma.io/documentation/layout/container/"
-                  >
-                    Layout
                   </a>
                 </div>
               </div>
@@ -278,7 +90,7 @@
                 <div class="level is-mobile">
                   <div class="level-left">
                     <div class="level-item">
-                      <strong>Stay up to date!</strong>
+                      <strong>Hungry! Order now</strong>
                     </div>
                   </div>
                   <div class="level-right">
@@ -299,46 +111,6 @@
             </div>
           </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <div class="navbar-link">
-            More
-          </div>
-          <div
-            id="moreDropdown"
-            class="navbar-dropdown "
-          >
-            <a
-              class="navbar-item "
-              href="http://bulma.io/extensions/"
-            >
-              <div class="level is-mobile">
-                <div class="level-left">
-                  <div class="level-item">
-                    <p>
-                      <strong>Extensions</strong>
-                      <br>
-                      <small>Side projects to enhance Bulma</small>
-                    </p>
-                  </div>
-                </div>
-                <div class="level-right">
-                  <div class="level-item">
-                    <span class="icon has-text-info">
-                      <i class="fa fa-plug"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <a
-          class="navbar-item "
-          href="http://bulma.io/expo/"
-        >
-          Test
-        </a>
-
       </div>
 
       <div class="navbar-end">
@@ -378,7 +150,18 @@
 </template>
 
 <script>
-export default {
+import store from '../../../store'
+import * as actions from '../../../store/action-types'
+import { mapGetters } from 'vuex'
 
+export default {
+  mounted(){
+    store.dispatch(actions.GET_CATEGORIES)
+  },
+  computed: {
+    ...mapGetters({
+      categories: 'getCategories'
+    })
+  }
 }
 </script>
