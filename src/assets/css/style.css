@@ -111,3 +111,19 @@ body{
 .side-serch-input{
 	width: 100%;
 }
+
+/* HOME PRODUCT */
+.discount-price{
+	margin-right: 10px;
+	text-decoration: line-through;
+}
+.product-offer-tag{
+	position: absolute;
+	top: 0px;
+	z-index: 1;
+	background-color: #ff3860;
+	border-color: transparent;
+	color: #fff;
+	font-size: 13px;
+	padding: 1px 5px 1px 5px;
+}

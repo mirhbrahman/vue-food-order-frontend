@@ -1,160 +1,56 @@
 <template>
 	<section class="mt-30">
-			<div class="columns">
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Placeholder image">
-							</figure>
-						</div>
-						<div class="card-content">
-
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
-							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
+		<div class="columns is-multiline">
+			<div v-if="products" v-for="(product, index) in products.data" :key="index" class="column is-one-third">
+				<div class="card">
+					<div class="card-image">
+						<p v-if="product.on_discount" class="product-offer-tag">Offer</p>
+						<figure class="image is-4by3">
+							<img :src="product.thumb" alt="Placeholder image">
+						</figure>
 					</div>
-				</div>
+					<div class="card-content">
 
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1460306855393-0410f61241c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80" alt="Placeholder image">
-							</figure>
+						<div class="content">
+							<h6 class="title is-6">{{product.name}}</h6>
+							<p>{{product.category.name}} </p>
 						</div>
-						<div class="card-content">
-
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
-							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
 					</div>
-				</div>
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Placeholder image">
-							</figure>
-						</div>
-						<div class="card-content">
-
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
+					<footer class="card-footer">
+						<a class="card-footer-item">
+							<a class="button is-primary is-small">
+								<i class="fa fa-star" aria-hidden="true"></i> 3.1
 							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
-					</div>
+						</a>
+
+						<div v-if="product.on_discount" class="card-footer-item">
+							<span class="has-text-grey-light discount-price">${{product.price}}</span>
+							<span><strong class="has-text-danger">${{product.discount_price}}</strong></span>
+						</div>
+						<div v-else class="card-footer-item">
+							<span class="has-text-primary">${{product.price}}</span>
+						</div>
+					</footer>
 				</div>
 			</div>
-			<div class="columns">
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Placeholder image">
-							</figure>
-						</div>
-						<div class="card-content">
 
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
-							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
-					</div>
-				</div>
-
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1460306855393-0410f61241c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80" alt="Placeholder image">
-							</figure>
-						</div>
-						<div class="card-content">
-
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
-							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Placeholder image">
-							</figure>
-						</div>
-						<div class="card-content">
-
-							<div class="content">
-								<h6 class="title is-6">Title 6</h6>
-								<p>Sub title</p>
-							</div>
-						</div>
-						<footer class="card-footer">
-							<a class="card-footer-item">
-								<a class="button is-primary is-small">
-									<i class="fa fa-star" aria-hidden="true"></i> 3.1
-								</a>
-							</a>
-							<a href="#" class="card-footer-item has-text-primary">$99.00</a>
-						</footer>
-					</div>
-				</div>
-			</div>
+		</div>
 	</section>
 </template>
 
 <script>
-	export default{
+	import store from '../../store'
+	import * as actions from '../../store/action-types'
+	import {mapGetters} from 'vuex'
 
+	export default{
+		mounted(){
+			store.dispatch(actions.GET_PRODUCTS)
+		},
+		computed:{
+			...mapGetters({
+				products: 'getProducts'
+			})
+		}
 	}
 </script>
