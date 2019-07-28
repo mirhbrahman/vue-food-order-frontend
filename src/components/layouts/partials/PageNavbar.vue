@@ -2,17 +2,14 @@
   <nav class="navbar is-fixed-top">
     <div class="container is-fluid">
     <div class="navbar-brand">
-      <a
-        class="navbar-item"
-        href="http://bulma.io"
-      >
+      <router-link to='/' class="navbar-item">
         <img
           src="http://bulma.io/images/bulma-logo.png"
           alt=""
           width="112"
           height="28"
         >
-      </a>
+      </router-link>
 
       <a
         class="navbar-item is-hidden-desktop"

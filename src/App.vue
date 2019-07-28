@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="">
     <page-navbar></page-navbar>
-    <router-view/>
+    <div class="mt-60">
+      <router-view/>
+    </div>
     <page-footer></page-footer>
   </div>
 </template>

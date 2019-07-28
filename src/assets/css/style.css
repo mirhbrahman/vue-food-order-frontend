@@ -15,8 +15,20 @@ body{
 .mb-0{
 	margin-bottom: 0px!important;
 }
+.mb-5{
+	margin-bottom: 5px!important;
+}
 .mt-30{
-	margin-top: 30px;
+	margin-top: 30px!important;
+}
+.mt-20{
+	margin-top: 20px!important;
+}
+.mt-60{
+	margin-top: 60px!important;
+}
+.pt-20{
+	padding-top: 20px!important;
 }
 /* NAVBAR */
 .navbar{
@@ -34,7 +46,6 @@ body{
 	background-position: center; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: cover; /* Resize the background image to cover the entire container */
-	margin-top: 50px;
 	margin-bottom: 30px;
 }
 
@@ -126,4 +137,12 @@ body{
 	color: #fff;
 	font-size: 13px;
 	padding: 1px 5px 1px 5px;
+}
+
+/* SINGLE PDODUCT PAGE */\
+.customer-review-tag{
+	font-size: 13px;
+}
+.s-offer-tag{
+	margin-left: 10px;
 }

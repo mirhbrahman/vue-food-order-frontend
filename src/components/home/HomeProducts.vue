@@ -2,7 +2,8 @@
 	<section class="mt-30">
 		<div class="columns is-multiline">
 			<div v-if="products" v-for="(product, index) in products.data" :key="index" class="column is-one-third">
-				<div class="card">
+				<router-link :to="{name: 'singleProduct', params: {slug: product.slug}}">
+					<div class="card">
 					<div class="card-image">
 						<p v-if="product.on_discount" class="product-offer-tag">Offer</p>
 						<figure class="image is-4by3">
@@ -32,6 +33,7 @@
 						</div>
 					</footer>
 				</div>
+				</router-link>
 			</div>
 
 		</div>
