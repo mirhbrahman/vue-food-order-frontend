@@ -11,7 +11,8 @@
 				<div class="box" v-if="results.length">
 					<ul class="list-group">
 						<li class="list-group-item" v-for="result in results">
-							<a class="has-text-primary" @click="onSelectItem(result.name)">{{ result.name }}</a>
+							<a class="has-text-primary" v-if="!noDataFound" @click="onSelectItem(result.name)">{{ result.name }}</a>
+							<p v-else>{{ result.name }}</p>
 						</li>
 					</ul>
 				</div>
@@ -28,7 +29,8 @@
 		data(){
 			return {
 				term: '',
-				results: []
+				results: [],
+				noDataFound: false
 			}
 		},
 		methods:{
@@ -39,7 +41,13 @@
 				this.results = [];
 				if(this.term.length > 2){
 					Vue.axios.get(`product/products/search/${this.term}`).then(response => {
-						this.results = response.data.data;
+						if(!response.data.data){
+							this.noDataFound = true
+							this.results = [{name: 'No data found!'}];
+						}else{
+							this.noDataFound = false
+							this.results = response.data.data;
+						}
 					});
 				}
 			},
