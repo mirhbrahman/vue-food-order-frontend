@@ -5,6 +5,7 @@ import SingleProduct from './views/SingleProduct.vue'
 import Category from './views/Category.vue'
 import SubCategory from './views/SubCategory.vue'
 import ChildCategory from './views/ChildCategory.vue'
+import SearchProduct from './views/SearchProduct.vue'
 
 Vue.use(Router)
 
@@ -36,16 +37,23 @@ export default new Router({
       component: Category,
       props: true
     },
- {
+    {
       path: '/sub-category/:sub_category',
       name: 'subCategoryProducts',
       component: SubCategory,
       props: true
     },
- {
+    {
       path: '/child-category/:child_category',
       name: 'childCategoryProducts',
       component: ChildCategory,
+      props: true
+    },
+    ,
+    {
+      path: '/search/:term',
+      name: 'searchProducts',
+      component: SearchProduct,
       props: true
     },
     {

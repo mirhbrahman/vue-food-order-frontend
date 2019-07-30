@@ -72,5 +72,19 @@ export default {
 				reject(err)
 			})
 		})
+	},
+	[actions.GET_SEARCHED_PRODUCT]({commit}, term){
+		return new Promise((resolve, reject)=>{
+			// Call api to get product by search
+			Vue.axios.get(`/product/products/search/${term}`)
+			.then(res=>{
+				// Set prodcts to state
+				commit(mutations.SET_PRODUCTS, res.data)
+				resolve(res)
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
 	}
 }

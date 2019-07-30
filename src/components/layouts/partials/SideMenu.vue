@@ -2,14 +2,21 @@
 	<div class="box">
 		<div class="side-search-wrap field has-addons">
 			<div class="control side-serch-input">
-				<input class="input" type="text" placeholder="Find food">
+				<input class="input" v-model="term" v-on:keyup="autoComplete" type="text" placeholder="Find food">
 			</div>
 			<div class="control">
-				<button type="submit" class="button is-primary">
+				<button @click="onSerchSubmit" type="submit" class="button is-primary">
 					<i class="fa fa-search"></i>
 				</button>
 			</div>
 		</div>
+		<div class="box" v-if="results.length">
+					<ul class="list-group">
+						<li class="list-group-item" v-for="result in results">
+							<a class="has-text-primary" @click="onSelectItem(result.name)">{{ result.name }}</a>
+						</li>
+					</ul>
+				</div>
 		<hr>
 		<aside class="menu">
 			<div v-for="(cat, index) in categories" :key="index">
@@ -39,11 +46,38 @@
 <script>
 	import store from '../../../store'
 	import { mapGetters } from 'vuex'
+	import router from '@/router'
+	import Vue from 'vue'
+
 	export default{
+		data(){
+			return {
+				term: '',
+				results: []
+			}
+		},
 		computed: {
 			...mapGetters({
 				categories: 'getCategories'
 			})
-		}
+		},
+		methods: {
+			onSerchSubmit(){
+				router.push({name: 'searchProducts', params: {term: this.term}})
+			},
+			autoComplete(){
+				this.results = [];
+				if(this.term.length > 2){
+					Vue.axios.get(`product/products/search/${this.term}`).then(response => {
+						this.results = response.data.data;
+					});
+				}
+			},
+			onSelectItem(item){
+				this.term = item
+				this.results = []
+			}
+		},
+
 	}
 </script>
