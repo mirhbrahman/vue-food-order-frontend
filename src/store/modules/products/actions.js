@@ -30,5 +30,19 @@ export default {
 				reject(err)
 			})
 		})
+	},
+	[actions.GET_PRODUCTS_BY_CATEGORY]({commit}, category){
+		return new Promise((resolve, reject)=>{
+			// Call api to get product by category slug
+			Vue.axios.get(`/product/products/category/${category}`)
+			.then(res=>{
+				// Set prodcts to state
+				commit(mutations.SET_PRODUCTS, res.data)
+				resolve(res)
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
 	}
 }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import SingleProduct from './views/SingleProduct.vue'
+import Category from './views/Category.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,12 @@ export default new Router({
       path: '/product/:slug',
       name: 'singleProduct',
       component: SingleProduct,
+      props: true
+    },
+    {
+      path: '/category/:category',
+      name: 'categoryProducts',
+      component: Category,
       props: true
     },
     {

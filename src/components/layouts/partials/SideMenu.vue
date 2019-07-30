@@ -13,11 +13,11 @@
 		<hr>
 		<aside class="menu">
 			<div v-for="(cat, index) in categories" :key="index">
-				<a href="">
+				<router-link :to="{name: 'categoryProducts', params: {category: cat.slug}}">
 					<p class="menu-label has-text-primary">
 					{{cat.name}}
 				</p>
-				</a>
+				</router-link>
 				<ul class="menu-list">
 					<li v-for="(subCat, index) in cat.sub_categories" :key="index">
 						<a>{{subCat.name}}</a>

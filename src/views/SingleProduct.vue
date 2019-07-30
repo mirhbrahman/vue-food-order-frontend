@@ -3,7 +3,17 @@
 		<div class="columns pt-20">
 			<div class="column is-two-thirds">
 				<div class="box">
-					<div class="columns">
+
+					<nav class="breadcrumb" aria-label="breadcrumbs">
+							<ul>
+								<li><router-link class="has-text-primary" to="/">Home</router-link></li>
+								<li><router-link  class="has-text-primary"  :to="{name: 'categoryProducts', params: {category: this.product.category.slug}}" v-if="product.name">{{this.product.category.name}}</router-link></li>
+								<li class="is-active"><a>{{this.product.name}}</a></li>
+							</ul>
+						</nav>
+
+
+					<div v-if="product.name" class="columns">
 						<div class="column">
 							<figure class="image image is-5by4">
 								<img :src="product.thumb" alt="product">
@@ -83,9 +93,6 @@
 		},
 		mounted(){
 			store.dispatch(actions.GET_PRODUCT, this.slug)
-			.then(res=>{
-				console.log(this.product)
-			})
 		},
 		computed: {
 			...mapGetters({

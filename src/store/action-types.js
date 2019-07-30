@@ -1,3 +1,7 @@
+// Category
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+// Product
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
+export const GET_PRODUCTS_BY_CATEGORY = 'GET_PRODUCTS_BY_CATEGORY'
+
