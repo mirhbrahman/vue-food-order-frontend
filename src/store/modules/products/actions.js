@@ -44,5 +44,33 @@ export default {
 				reject(err)
 			})
 		})
+	},
+	[actions.GET_PRODUCTS_BY_SUB_CATEGORY]({commit}, sub_category){
+		return new Promise((resolve, reject)=>{
+			// Call api to get product by sub-category slug
+			Vue.axios.get(`/product/products/sub-category/${sub_category}`)
+			.then(res=>{
+				// Set prodcts to state
+				commit(mutations.SET_PRODUCTS, res.data)
+				resolve(res)
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
+	},
+	[actions.GET_PRODUCTS_BY_CHILD_CATEGORY]({commit}, child_category){
+		return new Promise((resolve, reject)=>{
+			// Call api to get product by sub-category slug
+			Vue.axios.get(`/product/products/child-category/${child_category}`)
+			.then(res=>{
+				// Set prodcts to state
+				commit(mutations.SET_PRODUCTS, res.data)
+				resolve(res)
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
 	}
 }

@@ -15,15 +15,17 @@
 			<div v-for="(cat, index) in categories" :key="index">
 				<router-link :to="{name: 'categoryProducts', params: {category: cat.slug}}">
 					<p class="menu-label has-text-primary">
-					{{cat.name}}
-				</p>
+						{{cat.name}}
+					</p>
 				</router-link>
 				<ul class="menu-list">
 					<li v-for="(subCat, index) in cat.sub_categories" :key="index">
-						<a>{{subCat.name}}</a>
+						<router-link  class="" :to="{name: 'subCategoryProducts', params: {sub_category: subCat.slug}}">{{subCat.name}}
+						</router-link>
 						<ul>
 							<li v-for="(childCat, index) in subCat.child_categories" :key="index">
-								<a>{{childCat.name}}</a>
+								<router-link  class="navbar-content has-text-dark" :to="{name: 'childCategoryProducts', params: {child_category: childCat.slug}}">{{childCat.name}}
+								</router-link>
 							</li>
 						</ul>
 					</li>

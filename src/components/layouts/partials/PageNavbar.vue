@@ -53,7 +53,7 @@ class="navbar-menu"
 >
 <div class="navbar-start">
   <div v-for="(category, index) in categories" :key="index" class="navbar-item has-dropdown is-hoverable is-mega">
-    
+
     <router-link  class="navbar-link" :to="{name: 'categoryProducts', params: {category: category.slug}}">{{category.name}}</router-link>
     <div
     :id="category.id"
@@ -63,18 +63,18 @@ class="navbar-menu"
     <div class="container is-fluid">
       <div class="columns">
         <div v-for="(subCat, index) in category.sub_categories" :key="index" class="column">
-          <a href="">
-            <h1 class="title is-6 is-mega-menu-title has-text-primary">{{subCat.name}}</h1>
-          </a>
+
+          <router-link  class="title is-6 is-mega-menu-title has-text-primary" :to="{name: 'subCategoryProducts', params: {sub_category: subCat.slug}}">{{subCat.name}}
+          </router-link>
+
           <a
           v-for="(childCat, index) in subCat.child_categories" :key="index"
           class="navbar-item"
           href="/2017/08/03/list-of-tags/"
           >
-          <div class="navbar-content">
-            
-            <p>{{childCat.name}}</p>
-          </div>
+          <router-link  class="navbar-content has-text-dark" :to="{name: 'childCategoryProducts', params: {child_category: childCat.slug}}">{{childCat.name}}
+          </router-link>
+          
         </a>
       </div>
     </div>
