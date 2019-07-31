@@ -3,5 +3,11 @@ import * as mutations from '../../mutation-types'
 export default{
 	[mutations.SET_CART_COUNT](state, payload){
 		state.cartCount = payload
+	},
+	[mutations.SET_CART](state, payload){
+		state.cart = payload
+	},
+	[mutations.SET_CART_ITEMS](state, payload){
+		state.cartItems = payload
 	}
 }

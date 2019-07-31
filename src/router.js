@@ -8,9 +8,12 @@ import ChildCategory from './views/ChildCategory.vue'
 import SearchProduct from './views/SearchProduct.vue'
 import Cart from './views/Cart.vue'
 
+import store from './store'
+import * as actions from './store/action-types'
+
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
   if (savedPosition) {
@@ -71,3 +74,7 @@ export default new Router({
     }
   ]
 })
+
+
+
+export default router;

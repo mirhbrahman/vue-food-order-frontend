@@ -10,4 +10,5 @@ export const GET_SEARCHED_PRODUCT = 'GET_SEARCHED_PRODUCT'
 // Cart
 export const CART_COUNT = 'CART_COUNT'
 export const ADD_TO_CART = 'ADD_TO_CART'
+export const GET_CART = 'GET_CART'
 

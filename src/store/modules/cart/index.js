@@ -3,7 +3,8 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = {
-	cart: [],
+	cartItems: [],
+	cart: {},
 	cartCount: 0
 };
 

@@ -15,25 +15,25 @@
 								<th>Total</th>
 							</thead>
 							<tbody>
-								<tr>
+								<tr v-if="products" v-for="(product, index) in products">
 									<td>
 										<figure class="image is-96x96">
-											<img src="https://bulma.io/images/placeholders/128x128.png">
+											<img :src="product.thumb">
 										</figure>
 									</td>
-									<td>dslfj</td>
-									<td>dslfj</td>
+									<td>{{product.name}}</td>
+									<td>${{product.price}}</td>
 									<td>
 										<div class="columns">
 											<div class="column">
-											<input class="input" type="number" value="1">
+											<input class="input" type="number" :value="quantity(product.id)">
 										</div>
 										<div class="column">
 											<a class="button is-danger">Remove</a>
 										</div>
 										</div>
 									</td>
-									<td>dslfj</td>
+									<td>{{singleProductTotal(product)}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -44,11 +44,11 @@
 								<table class="table is-fullwidth">
 									<tr>
 										<td class="cart-total">Subtotal</td>
-										<td class="cart-total cart-total-price">dsddsds</td>
+										<td v-if="products" class="cart-total cart-total-price">${{grandTotal()}}</td>
 									</tr>
 									<tr>
 										<td class="cart-total">Grand Total</td>
-										<td class="cart-total cart-total-price"><b>$433</b></td>
+										<td v-if="products" class="cart-total cart-total-price"><b>${{grandTotal()}}</b></td>
 									</tr>
 								</table>
 							</div>
@@ -97,8 +97,29 @@
 			term: String
 		},
 		mounted(){
+			store.dispatch(actions.GET_CART)
 		},
 		computed: {
+			...mapGetters({
+				cartItems: 'getCartItems',
+				products : 'getCart'
+			})
+		},
+		methods:{
+			quantity(productId){
+				return this.cartItems[productId]
+			},
+			singleProductTotal(product){
+				return this.cartItems[product.id] * product.price
+			},
+			grandTotal(){
+				let grandTotal = 0;
+				for(let product of Array.from(this.products)){
+					grandTotal += (this.cartItems[product.id] * product.price)
+				}
+				return grandTotal;
+			}
+
 		}
 	}
 </script>

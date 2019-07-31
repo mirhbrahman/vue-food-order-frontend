@@ -1,5 +1,6 @@
 import * as actions from '../../action-types'
 import * as mutations from '../../mutation-types'
+import Vue from 'vue'
 
 export default {
 	[actions.CART_COUNT]({commit}){
@@ -7,11 +8,12 @@ export default {
 		let cartItems = JSON.parse(localStorage.getItem('cart'))
 		let count = 0
 		if(cartItems !== null && Object.keys(cartItems).length > 0){
-			let count = Object.keys(cartItems).length
+			count = Object.keys(cartItems).length
 		}
-		
 		// Adde cart count ot state
 		commit(mutations.SET_CART_COUNT, count)
+		// Set cart item
+		commit(mutations.SET_CART_ITEMS, cartItems)
 	},
 	[actions.ADD_TO_CART]({commit}, payload){
 		// Store cart item to local storage
@@ -38,6 +40,29 @@ export default {
 
 		// Adde cart count ot state
 		commit(mutations.SET_CART_COUNT, Object.keys(cartItems).length)
+		// Set cart item
+		commit(mutations.SET_CART_ITEMS, cartItems)
 
+	},
+	[actions.GET_CART]({commit}, payload){
+		return new Promise((resolve, reject)=>{
+			// Cart form local storage
+			let cartItems = JSON.parse(localStorage.getItem('cart'))
+			if(cartItems !== null && Object.keys(cartItems).length > 0){
+				let productIds = Object.keys(cartItems)
+					// Call API get cart product list
+					Vue.axios.post('/product/products/cart', {productIds : productIds})
+					.then(res=>{
+				// Set all cart product to state
+				commit(mutations.SET_CART, res.data.data)
+				resolve(res)
+			})
+					.catch(err=>{
+						reject(err)
+					})
+				}else{
+					reject()
+				}
+			})
 	}
 }
