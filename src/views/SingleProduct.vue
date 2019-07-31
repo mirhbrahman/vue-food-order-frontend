@@ -35,9 +35,11 @@
 
 							<div class="columns mt-20">
 								<div class="column is-3">
-									<input class="input" type="number" value="1" placeholder="">
+									<input class="input" type="number" v-model="quantity" value="1" placeholder="">
 								</div>
-								<div class="column"><button class="button is-primary">Add to cart</button></div>
+								<div class="column">
+									<button @click="addToCart" class="button is-primary">Add to cart</button>
+								</div>
 							</div>
 
 							<hr>
@@ -91,6 +93,11 @@
 		props: {
 			slug : String
 		},
+		data(){
+			return {
+				quantity : 1
+			}
+		},
 		mounted(){
 			store.dispatch(actions.GET_PRODUCT, this.slug)
 		},
@@ -98,6 +105,16 @@
 			...mapGetters({
 				product: 'getProduct'
 			})
+		},
+		methods: {
+			addToCart(){
+				let payload = {
+					productId: this.product.id,
+					quantity : this.quantity
+				}
+
+				store.dispatch(actions.ADD_TO_CART, payload);
+			}
 		}
 	}
 </script>

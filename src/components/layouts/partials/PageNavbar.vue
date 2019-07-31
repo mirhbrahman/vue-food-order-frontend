@@ -120,7 +120,7 @@ class="navbar-menu"
         <span class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
-        <span>19</span>
+        <span>{{cartCount}}</span>
       </a>
     </p>
   </div>
@@ -152,11 +152,13 @@ Register
 
   export default {
     mounted(){
+      store.dispatch(actions.CART_COUNT)
       store.dispatch(actions.GET_CATEGORIES)
     },
     computed: {
       ...mapGetters({
-        categories: 'getCategories'
+        categories: 'getCategories',
+        cartCount: 'getCartCount'
       })
     }
   }
