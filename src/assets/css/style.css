@@ -143,6 +143,17 @@ body{
 .customer-review-tag{
 	font-size: 13px;
 }
-.s-offer-tag{
+.s-offer-tag {
 	margin-left: 10px;
+}
+
+/* CART */
+.cart-total {
+	border: 0px!important;
+}
+.cart-total-price{
+	text-align: right!important;
+}
+.checkout-btn{
+	float: right;
 }

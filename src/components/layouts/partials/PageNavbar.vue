@@ -113,15 +113,13 @@ class="navbar-menu"
   <div class="navbar-item">
     <div class="field is-grouped">
       <p class="control">
-        <a
-        class="button is-primary is-outlined is-small"
-        href=""
-        >
+        <router-link to="/cart" class="button is-primary is-outlined is-small">
+      
         <span class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
         <span>{{cartCount}}</span>
-      </a>
+      </router-link>
     </p>
   </div>
 </div>

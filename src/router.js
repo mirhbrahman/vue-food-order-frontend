@@ -6,6 +6,7 @@ import Category from './views/Category.vue'
 import SubCategory from './views/SubCategory.vue'
 import ChildCategory from './views/ChildCategory.vue'
 import SearchProduct from './views/SearchProduct.vue'
+import Cart from './views/Cart.vue'
 
 Vue.use(Router)
 
@@ -49,12 +50,16 @@ export default new Router({
       component: ChildCategory,
       props: true
     },
-    ,
     {
       path: '/search/:term',
       name: 'searchProducts',
       component: SearchProduct,
       props: true
+    },
+    {
+      path: '/cart',
+      name: 'productCart',
+      component: Cart
     },
     {
       path: '/about',
