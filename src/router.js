@@ -7,6 +7,8 @@ import SubCategory from './views/SubCategory.vue'
 import ChildCategory from './views/ChildCategory.vue'
 import SearchProduct from './views/SearchProduct.vue'
 import Cart from './views/Cart.vue'
+import Register from './views/Register.vue'
+import Login from './views/Login.vue'
 
 import store from './store'
 import * as actions from './store/action-types'
@@ -65,6 +67,16 @@ let router = new Router({
       component: Cart
     },
     {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -76,5 +88,6 @@ let router = new Router({
 })
 
 
-
+// Check route meta
+require("./utils/metaChecker")(router);
 export default router;

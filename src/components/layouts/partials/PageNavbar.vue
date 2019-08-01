@@ -123,18 +123,11 @@ class="navbar-menu"
     </p>
   </div>
 </div>
-<a
-class="navbar-item"
-href=""
->
-Login
-</a>
-<a
-class="navbar-item"
-href=""
->
-Register
-</a>
+
+<a v-if="isLogin" class="navbar-item has-text-danger" @click='logout'>Logout</a>
+
+<router-link v-if="!isLogin" to="/login" class="navbar-item">Login</router-link>
+<router-link v-if="!isLogin" to="/register" class="navbar-item">Register</router-link>
 
 </div>
 </div>
@@ -155,9 +148,15 @@ Register
     },
     computed: {
       ...mapGetters({
+        isLogin: 'isLogin',
         categories: 'getCategories',
         cartCount: 'getCartCount'
       })
+    },
+    methods: {
+      logout(){
+        store.dispatch(actions.LOGOUT_CUSTOMER)
+      }
     }
   }
 </script>

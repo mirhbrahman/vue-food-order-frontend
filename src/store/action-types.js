@@ -1,3 +1,6 @@
+// Error
+export const GET_ERRORS = 'GET_ERRORS'
+export const SET_ERRORS = 'SET_ERRORS'
 // Category
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 // Product
@@ -11,4 +14,8 @@ export const GET_SEARCHED_PRODUCT = 'GET_SEARCHED_PRODUCT'
 export const CART_COUNT = 'CART_COUNT'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const GET_CART = 'GET_CART'
+// Auth
+export const REGISTER_CUSTOMER = 'REGISTER_CUSTOMER'
+export const LOGIN_CUSTOMER = 'LOGIN_CUSTOMER'
+export const LOGOUT_CUSTOMER = 'LOGOUT_CUSTOMER'
 
