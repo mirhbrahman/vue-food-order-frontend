@@ -9,6 +9,7 @@ import SearchProduct from './views/SearchProduct.vue'
 import Cart from './views/Cart.vue'
 import Register from './views/Register.vue'
 import Login from './views/Login.vue'
+import Checkout from './views/Checkout.vue'
 
 import store from './store'
 import * as actions from './store/action-types'
@@ -75,6 +76,14 @@ let router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/about',

@@ -9,5 +9,8 @@ export default{
 	},
 	[mutations.SET_CART_ITEMS](state, payload){
 		state.cartItems = payload
+	},
+	[mutations.REMOVE_FORM_CART](state, productId){
+		state.cart = state.cart.filter(item => item.id != productId)
 	}
 }

@@ -26,10 +26,12 @@
 									<td>
 										<div class="columns">
 											<div class="column">
-											<input class="input" type="number" :value="quantity(product.id)">
+											<input class="input" type="number" 
+											@change="onQuantityChange($event.target.value, product.id)" 
+											:value="quantity(product.id)">
 										</div>
 										<div class="column">
-											<a class="button is-danger">Remove</a>
+											<a class="button is-danger" @click="onDeleteClick(product.id)">Remove</a>
 										</div>
 										</div>
 									</td>
@@ -96,6 +98,11 @@
 		props: {
 			term: String
 		},
+		data(){
+			return {
+				
+			}
+		},
 		mounted(){
 			store.dispatch(actions.GET_CART)
 		},
@@ -118,6 +125,19 @@
 					grandTotal += (this.cartItems[product.id] * product.price)
 				}
 				return grandTotal;
+			},
+			onQuantityChange(newQuantity, productId){
+				let payload = {
+					newQuantity,
+					productId
+				}
+				store.dispatch(actions.CHANGE_CART_QUANTITY, payload)
+				.then(()=>{
+					store.dispatch(actions.GET_CART)
+				})
+			},
+			onDeleteClick(productId){
+				store.dispatch(actions.REMOVE_FORM_CART, productId)
 			}
 
 		}
