@@ -2,6 +2,13 @@ body{
 	background: #F3F7F8;
 	font-family: 'Muli', sans-serif;
 }
+.is-active{
+	border-color: hsl(171, 100%, 41%)!important;
+}
+.is-active > a{
+	border-color: hsl(171, 100%, 41%)!important;
+	background-color: hsl(171, 100%, 41%)!important;
+}
 .bg-white{
 	background: white;
 }

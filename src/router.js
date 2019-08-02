@@ -81,9 +81,9 @@ let router = new Router({
       path: '/checkout',
       name: 'checkout',
       component: Checkout,
-      meta: {
-        requiresAuth: true
-      }
+      // meta: {
+      //   requiresAuth: true
+      // }
     },
     {
       path: '/about',

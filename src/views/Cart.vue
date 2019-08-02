@@ -58,7 +58,7 @@
 
 						<div class="columns">
 							<div class="column">
-								<a class="button is-success checkout-btn">Checkout</a>
+								<router-link to="/checkout" class="button is-success checkout-btn">Checkout</router-link>
 							</div>
 						</div>
 
@@ -94,14 +94,6 @@
 	export default {
 		components:{
 			SideMenu
-		},
-		props: {
-			term: String
-		},
-		data(){
-			return {
-				
-			}
 		},
 		mounted(){
 			store.dispatch(actions.GET_CART)
