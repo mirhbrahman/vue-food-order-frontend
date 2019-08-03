@@ -95,7 +95,7 @@ export default {
 				// Cart form local storage
 				let cartItems = JSON.parse(localStorage.getItem('cart'))
 				// Change item quantity
-				cartItems[payload.productId] = payload.newQuantity
+				cartItems[payload.productId] = parseInt(payload.newQuantity)
 				
 				// Store in localStorage
 				localStorage.setItem('cart', JSON.stringify(cartItems));

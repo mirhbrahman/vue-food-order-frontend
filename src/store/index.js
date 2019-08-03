@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import categories from './modules/categories'
 import products from './modules/products'
 import cart from './modules/cart'
+import order from './modules/order'
 import auth from './modules/auth'
 import error from './modules/utils/error'
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   	categories,
   	products,
   	cart,
+  	order,
   	auth,
   	error
   }

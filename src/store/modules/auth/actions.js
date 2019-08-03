@@ -3,6 +3,7 @@ import * as mutations from '../../mutation-types'
 import setAuthToken from "@/utils/setAuthToken";
 import Vue from 'vue'
 import router from '@/router'
+import jwtDecode from "vue-jwt-decode"
 
 export default {
 	[actions.REGISTER_CUSTOMER]({commit}, payload){
@@ -50,6 +51,22 @@ export default {
 				reject(err)
 			})
 		})
+	},
+	[actions.SET_AUTH_CUSTOMER]({commit}){
+		return new Promise((resolve, reject)=>{
+			// Call API to get logged in customer
+			Vue.axios.get('/customer/auth-customer')
+			.then(res=>{
+				if(res.data.success){
+					// Store customer to state
+      		commit(mutations.SET_AUTH_CUSTOMER, res.data.customer);
+				}
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
+
 	},
 	[actions.LOGOUT_CUSTOMER]({commit}){
 		if (localStorage.getItem("customer_jwt")) {

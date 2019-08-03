@@ -33,10 +33,13 @@ if (localStorage.getItem("customer_jwt")) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     // Logout customer
-    store.dispatch(action.LOGOUT_CUSTOMER);
+    store.dispatch(actions.LOGOUT_CUSTOMER);
     // Redirect to login
     router.push({ name: "login" });
   }
+
+  // Store customer to state
+  store.dispatch(actions.SET_AUTH_CUSTOMER);
 }
 
 

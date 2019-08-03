@@ -16,7 +16,7 @@
 							<tbody>
 								<tr v-if="products" v-for="(product, index) in products">
 									<td>{{product.name}}</td>
-									<td>${{product.price}}</td>
+									<td>${{singleProductPrice(product)}}</td>
 									<td>
 										{{quantity(product.id)}}
 									</td>
@@ -59,31 +59,46 @@
 								</li>
 							</ul>
 						</div>
+
+						<div v-if="isError">
+							<article class="message is-danger">
+								<div class="message-header">
+									<p>Errors</p>
+								</div>
+								<div class="message-body">
+									<ul>
+										<li v-for="(error, index) in errors" :key="index">
+											{{error[0]}}
+										</li>
+									</ul>
+								</div>
+							</article>
+						</div>
 						
 						<div v-if="address">
 							<form>
 								<div class="field">
 									<label class="label">Recipient name</label>
 									<div class="control">
-										<input class="input" type="text">
+										<input v-model="form.recipientName" class="input" type="text">
 									</div>
 								</div>
 								<div class="field">
 									<label class="label">Phone</label>
 									<div class="control">
-										<input class="input" type="text">
+										<input v-model="form.phone" class="input" type="text">
 									</div>
 								</div>
 								<div class="field">
 									<label class="label">Address</label>
 									<div class="control">
-										<input class="input" type="text">
+										<input v-model="form.address" class="input" type="text">
 									</div>
 								</div>
 								<div class="field">
 									<label class="label">Address 2 (Optional)</label>
 									<div class="control">
-										<input class="input" type="text">
+										<input v-model="form.address2" class="input" type="text">
 									</div>
 								</div>
 
@@ -92,7 +107,7 @@
 										<div class="field">
 											<label class="label">State</label>
 											<div class="control">
-												<input class="input" type="text">
+												<input v-model="form.state" class="input" type="text">
 											</div>
 										</div>
 									</div>
@@ -100,13 +115,19 @@
 										<div class="field">
 											<label class="label">Zip</label>
 											<div class="control">
-												<input class="input" type="text">
+												<input v-model="form.zip" class="input" type="text">
 											</div>
 										</div>
 									</div>
 								</div>
 
 							</form>
+
+							<div class="columns">
+								<div class="column">
+									<a @click="onPaymentClick" class="button is-success checkout-btn">Payment</a>
+								</div>
+							</div>
 						</div>
 
 						<div v-if="payment">
@@ -124,50 +145,49 @@
 							<div v-if="showCardPayment" class="columns mt-20">
 								<div class="column is-half">
 									<form>
-									<div class="columns">
-										<div class="column is-two-thirds">
-											<div class="field">
-												<label class="label">Card number</label>
-												<div class="control">
-													<input class="input" type="text" placeholder="">
+										<div class="columns">
+											<div class="column is-two-thirds">
+												<div class="field">
+													<label class="label">Card number</label>
+													<div class="control">
+														<input v-model="form.cardNumber" class="input" type="text" placeholder="">
+													</div>
+												</div>
+											</div>
+											<div class="column">
+												<div class="field">
+													<label class="label">Expires</label>
+													<div class="control">
+														<input v-model="form.expires" class="input" type="text" placeholder="MM/YY">
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="column">
-											<div class="field">
-												<label class="label">Expires</label>
-												<div class="control">
-													<input class="input" type="text" placeholder="MM/YY">
+										<div class="columns">
+											<div class="column is-two-thirds">
+												<div class="field">
+													<label class="label">Name on card</label>
+													<div class="control">
+														<input v-model="form.nameOnCard" class="input" type="text" placeholder="">
+													</div>
+												</div>
+											</div>
+											<div class="column">
+												<div class="field">
+													<label class="label">Card code</label>
+													<div class="control">
+														<input v-model="form.cardCode" class="input" type="text" placeholder="CVC">
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-																		<div class="columns">
-										<div class="column is-two-thirds">
-											<div class="field">
-												<label class="label">Name on card</label>
-												<div class="control">
-													<input class="input" type="text" placeholder="">
-												</div>
-											</div>
-										</div>
-										<div class="column">
-											<div class="field">
-												<label class="label">Card code</label>
-												<div class="control">
-													<input class="input" type="text" placeholder="CVC">
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
+									</form>
 								</div>
 							</div>
-						</div>
-
-						<div class="columns">
-							<div class="column">
-								<router-link to="/checkout" class="button is-success checkout-btn" :disabled="paymentBtnInActive">Payment (${{grandTotal()}})</router-link>
+							<div class="columns">
+								<div class="column">
+									<a @click="onPayClick" class="button is-success checkout-btn" :disabled="paymentBtnInActive">Pay (${{grandTotal()}})</a>
+								</div>
 							</div>
 						</div>
 
@@ -210,7 +230,21 @@
 				address: true,
 				payment: false,
 				showCardPayment: false,
-				paymentBtnInActive: true
+				paymentBtnInActive: true,
+				form: {
+					customerId: 0,
+					recipientName: '',
+					phone: '',
+					address: '',
+					address2: '',
+					state: '',
+					zip: '',
+					cod: false,
+					cardNumber: '',
+					expires: '',
+					nameOnCard: '',
+					cardCode: ''
+				}
 			}
 		},
 		mounted(){
@@ -218,6 +252,9 @@
 		},
 		computed: {
 			...mapGetters({
+				isError: 'isError',
+				errors: 'getErrors',
+				customer: 'getAuthCustomer',
 				cartItems: 'getCartItems',
 				products : 'getCart'
 			})
@@ -226,13 +263,31 @@
 			quantity(productId){
 				return this.cartItems[productId]
 			},
+			singleProductPrice(product){
+				if(product.on_discount){
+					return product.discount_price
+				}else{
+					return product.price
+				}
+			},
 			singleProductTotal(product){
-				return this.cartItems[product.id] * product.price
+				let price = 0;
+				if(product.on_discount){
+					price = this.cartItems[product.id] * product.discount_price
+				}else{
+					price = this.cartItems[product.id] * product.price
+				}
+				return price;
 			},
 			grandTotal(){
 				let grandTotal = 0;
 				for(let product of Array.from(this.products)){
-					grandTotal += (this.cartItems[product.id] * product.price)
+					if(product.on_discount){
+						grandTotal += (this.cartItems[product.id] * product.discount_price)
+					}else{
+						grandTotal += (this.cartItems[product.id] * product.price)
+					}
+					
 				}
 				return grandTotal;
 			},
@@ -245,10 +300,17 @@
 				this.payment = true
 			},
 			onCODClick(){
-				
+				this.form.cod = true
+				this.paymentBtnInActive = false
 			},
 			onCardClick(){
+				this.form.cod = false
 				this.showCardPayment = true
+				this.paymentBtnInActive = false
+			},
+			onPayClick(){
+				this.form.customerId = this.customer.id
+				store.dispatch(actions.PLACE_ORDER, this.form)
 			}
 		}
 	}
