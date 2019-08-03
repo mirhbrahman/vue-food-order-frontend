@@ -22,20 +22,20 @@
 										</figure>
 									</td>
 									<td>{{product.name}}</td>
-									<td>${{product.price}}</td>
+									<td>${{singleProductPrice(product)}}</td>
 									<td>
 										<div class="columns">
 											<div class="column">
-											<input class="input" type="number" 
-											@change="onQuantityChange($event.target.value, product.id)" 
-											:value="quantity(product.id)">
-										</div>
-										<div class="column">
-											<a class="button is-danger" @click="onDeleteClick(product.id)">Remove</a>
-										</div>
+												<input class="input" type="number" 
+												@change="onQuantityChange($event.target.value, product.id)" 
+												:value="quantity(product.id)">
+											</div>
+											<div class="column">
+												<a class="button is-danger" @click="onDeleteClick(product.id)">Remove</a>
+											</div>
 										</div>
 									</td>
-									<td>{{singleProductTotal(product)}}</td>
+									<td>${{singleProductTotal(product)}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -108,13 +108,31 @@
 			quantity(productId){
 				return this.cartItems[productId]
 			},
+			singleProductPrice(product){
+				if(product.on_discount){
+					return product.discount_price
+				}else{
+					return product.price
+				}
+			},
 			singleProductTotal(product){
-				return this.cartItems[product.id] * product.price
+				let price = 0;
+				if(product.on_discount){
+					price = this.cartItems[product.id] * product.discount_price
+				}else{
+					price = this.cartItems[product.id] * product.price
+				}
+				return price;
 			},
 			grandTotal(){
 				let grandTotal = 0;
 				for(let product of Array.from(this.products)){
-					grandTotal += (this.cartItems[product.id] * product.price)
+					if(product.on_discount){
+						grandTotal += (this.cartItems[product.id] * product.discount_price)
+					}else{
+						grandTotal += (this.cartItems[product.id] * product.price)
+					}
+					
 				}
 				return grandTotal;
 			},

@@ -20,7 +20,7 @@
 									<td>
 										{{quantity(product.id)}}
 									</td>
-									<td>{{singleProductTotal(product)}}</td>
+									<td>${{singleProductTotal(product)}}</td>
 								</tr>
 							</tbody>
 						</table>
