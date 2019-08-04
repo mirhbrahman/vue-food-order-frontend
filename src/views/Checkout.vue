@@ -143,14 +143,14 @@
 							</div>
 
 							<div v-if="showCardPayment" class="columns mt-20">
-								<div class="column is-half">
+								<div class="column is-two-thirds">
 									<form>
 										<div class="columns">
 											<div class="column is-two-thirds">
 												<div class="field">
 													<label class="label">Card number</label>
 													<div class="control">
-														<input v-model="form.cardNumber" class="input" type="text" placeholder="">
+														<input v-model="card.cardNumber" class="input" type="text" placeholder="">
 													</div>
 												</div>
 											</div>
@@ -158,7 +158,14 @@
 												<div class="field">
 													<label class="label">Expires</label>
 													<div class="control">
-														<input v-model="form.expires" class="input" type="text" placeholder="MM/YY">
+														<div class="columns">
+															<div class="column">
+																<input v-model="card.expMonth" class="input" type="text" placeholder="MM">
+															</div>
+															<div class="column">
+																<input v-model="card.expYear" class="input" type="text" placeholder="YY">
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -168,15 +175,15 @@
 												<div class="field">
 													<label class="label">Name on card</label>
 													<div class="control">
-														<input v-model="form.nameOnCard" class="input" type="text" placeholder="">
+														<input v-model="card.nameOnCard" class="input" type="text" placeholder="">
 													</div>
 												</div>
 											</div>
 											<div class="column">
 												<div class="field">
-													<label class="label">Card code</label>
+													<label class="label">CVC</label>
 													<div class="control">
-														<input v-model="form.cardCode" class="input" type="text" placeholder="CVC">
+														<input v-model="card.cvc" class="input" type="text" placeholder="CVC">
 													</div>
 												</div>
 											</div>
@@ -241,11 +248,15 @@
 					state: '',
 					zip: '',
 					cod: false,
-					cardNumber: '',
-					expires: '',
+					token_from_stripe: ''
+				},
+				card: {
 					nameOnCard: '',
-					cardCode: ''
-				}
+					cardNumber: '',
+					expMonth: '',
+					expYear: '',
+					cvc: '',
+				},
 			}
 		},
 		mounted(){
@@ -311,13 +322,45 @@
 			},
 			onPayClick(){
 				this.form.customerId = this.customer.id
+
+				if(this.payment == true){
+					this.processCard()
+					this.processOrder()
+				}else{
+					this.processOrder()
+				}
+
+			},
+			processOrder(){
 				store.dispatch(actions.PLACE_ORDER, this.form)
 				.then(res=>{
 					this.$toastr.s(res.data.message)
 					// Redirect to home
 					router.push({name: 'home'})
 				})
-			}
-		}
-	}
+			},
+			processCard(){
+				// Payment
+				// Generate stripe token
+				let card = {
+					name: this.card.nameOnCard,
+					number: this.card.cardNumber,
+					cvc: this.card.cvc,
+					exp_month: this.card.expMonth,
+					exp_year: this.card.expYear
+				};
+				window.Stripe.setPublishableKey("pk_test_arr20NMmOPBNJWZCNBvTZib8");
+				window.Stripe.createToken(card, this.stripeResponseHandler);
+			},
+			stripeResponseHandler(status, response) {
+				if (response.error) {
+					this.$toastr.e(response.error.message)
+				} else {
+        // token to create a charge on our server
+        this.form.token_from_stripe = response.id;
+
+      }
+    }
+  }
+}
 </script>
