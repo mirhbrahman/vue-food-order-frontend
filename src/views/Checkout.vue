@@ -217,6 +217,7 @@
 <script>
 	import store from '../store'
 	import * as actions from '../store/action-types'
+	import router from '@/router'
 	import {mapGetters} from 'vuex'
 
 	import SideMenu from '@/components/layouts/partials/SideMenu.vue'
@@ -311,6 +312,11 @@
 			onPayClick(){
 				this.form.customerId = this.customer.id
 				store.dispatch(actions.PLACE_ORDER, this.form)
+				.then(res=>{
+					this.$toastr.s(res.data.message)
+					// Redirect to home
+					router.push({name: 'home'})
+				})
 			}
 		}
 	}

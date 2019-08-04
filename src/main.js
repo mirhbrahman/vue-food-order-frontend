@@ -20,7 +20,12 @@ Vue.axios = Vue.prototype.$http = axios.create({
   baseURL: "http://127.0.0.1:8000/api"
 });
 
-
+// Vue toastr
+import VueToastr from "vue-toastr";
+// use plugin
+Vue.use(VueToastr, {
+  timeout: 2000
+})
 // Check for token
 if (localStorage.getItem("customer_jwt")) {
   // Getting token form local storage

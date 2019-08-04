@@ -12,8 +12,15 @@ export default {
 			// Call api for place order
 			Vue.axios.post('/product/order', payload)
 			.then(res=>{
-				console.log(res.data)
-				resolve(res)
+				if(res.data.success){
+					// Remove cart form localstorage
+					if(localStorage.getItem('cart')){
+						localStorage.removeItem('cart')
+					}
+					// Clear cart
+					commit(mutations.CLEAR_CART)
+					resolve(res)
+				}
 			})
 			.catch(err=>{
 				commit(mutations.SET_ERRORS, err.response.data)

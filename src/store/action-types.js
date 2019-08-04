@@ -16,6 +16,7 @@ export const ADD_TO_CART = 'ADD_TO_CART'
 export const GET_CART = 'GET_CART'
 export const CHANGE_CART_QUANTITY = 'CHANGE_CART_QUANTITY'
 export const REMOVE_FORM_CART = 'REMOVE_FORM_CART'
+export const CLEAR_CART = 'CLEAR_CART'
 // Auth
 export const REGISTER_CUSTOMER = 'REGISTER_CUSTOMER'
 export const LOGIN_CUSTOMER = 'LOGIN_CUSTOMER'

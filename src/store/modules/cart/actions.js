@@ -1,5 +1,6 @@
 import * as actions from '../../action-types'
 import * as mutations from '../../mutation-types'
+import router from '@/router'
 import Vue from 'vue'
 
 export default {
@@ -108,5 +109,15 @@ export default {
 				reject(err)
 			}
 		})
+	},
+	[actions.CLEAR_CART]({commit}){
+		// Remove cart form localstorage
+		if(localStorage.getItem('cart')){
+			localStorage.removeItem('cart')
+		}
+		// Remove cart form state
+		commit(mutations.CLEAR_CART)
+		// Redirect user to home
+		router.push({name: 'home'})
 	}
 }

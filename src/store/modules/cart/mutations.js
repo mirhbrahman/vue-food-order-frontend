@@ -12,5 +12,10 @@ export default{
 	},
 	[mutations.REMOVE_FORM_CART](state, productId){
 		state.cart = state.cart.filter(item => item.id != productId)
+	},
+	[mutations.CLEAR_CART](state){
+		state.cart = {}
+		state.cartItems = []
+		state.cartCount = 0
 	}
 }
