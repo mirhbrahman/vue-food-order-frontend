@@ -2,7 +2,7 @@
 	<div class="">
 		<div class="container">
 			<div class="columns pt-20">
-				<div class="column is-two-thirds">
+				<div v-if="products.length > 0" class="column is-two-thirds">
 					<section class="box">
 						<h5 class="subtitle is-5">Checkout</h5>
 						
@@ -201,6 +201,13 @@
 					</section>
 
 				</div>
+
+				<div v-else class="column is-two-thirds">
+					<div class="box">
+						<h5 class="subtitle is-5">No product on your cart</h5>
+					</div>
+				</div>
+
 				<div class="column">
 					<div class="box">
 						<div class="columns">
