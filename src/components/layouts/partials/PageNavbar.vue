@@ -124,6 +124,7 @@ class="navbar-menu"
   </div>
 </div>
 
+<router-link v-if="isLogin" to="/dashboard" class="navbar-item">Dashboard</router-link>
 <a v-if="isLogin" class="navbar-item has-text-danger" @click='logout'>Logout</a>
 
 <router-link v-if="!isLogin" to="/login" class="navbar-item">Login</router-link>

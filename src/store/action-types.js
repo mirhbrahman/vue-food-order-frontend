@@ -24,4 +24,5 @@ export const SET_AUTH_CUSTOMER = 'SET_AUTH_CUSTOMER'
 export const LOGOUT_CUSTOMER = 'LOGOUT_CUSTOMER'
 // Order
 export const PLACE_ORDER = 'PLACE_ORDER'
+export const GET_ORDERS = 'GET_ORDERS'
 

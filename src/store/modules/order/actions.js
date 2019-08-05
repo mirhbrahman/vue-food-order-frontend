@@ -27,5 +27,21 @@ export default {
 				reject(err)
 			})
 		})
+	},
+	[actions.GET_ORDERS]({commit}){
+		return new Promise((resolve, reject)=>{
+			// Call API for orders
+			Vue.axios.post('/customer/orders')
+			.then(res=>{
+				if(res.data.success){
+					// Set all orders to order state
+					commit(mutations.SET_ORDERS, res.data.orders)
+					resolve(res)
+				}
+			})
+			.catch(err=>{
+				reject(err)
+			})
+		})
 	}
 }
